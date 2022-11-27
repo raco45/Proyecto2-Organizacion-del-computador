@@ -1,3 +1,6 @@
+import funciones
+
+
 texto="""  _______   __                                                    __        __                                                         
 |       \ |  \                                                  |  \      |  \                                                        
 | $$$$$$$\ \$$  ______   _______  __     __   ______   _______   \$$  ____| $$  ______    _______                                     
@@ -36,3 +39,5 @@ texto="""  _______   __                                                    __   
                                                       \$$$$$$          """
 
 print(texto)
+variable=funciones.pedir_cota()
+print(variable)
