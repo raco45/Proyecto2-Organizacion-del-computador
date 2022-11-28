@@ -36,7 +36,3 @@ def anadir_pintura(lista):
     \n2. En mantenimiento.
     \n---->   ''', 3)
 
-
-
-  
-
