@@ -31,6 +31,43 @@ def pedir_cota():
         except :
             print("Se ha identificado un error")
             continue 
-    
-                   
 
+def val_str(msg1):
+    while True:
+        string = input(msg1)
+        if string.replace(" ", "").isalpha():
+            string = string.capitalize()
+            return string
+            break
+        else:
+            print('Ingrese una opcion valida')
+                   
+def val_int(msg1):
+    while True:
+        num = input(msg1)
+        if num.replace(" ", "").isnumeric() and 1<=int(num):
+            num = int(num)
+            return num
+            break
+        else:
+            print('Ingrese una opcion valida.')
+
+def val_menu(msg1, n):
+    while True:
+        num = input(msg1)
+        if num.replace(" ", "").isnumeric() and 1<=int(num)<n:
+            num = int(num)
+            return num
+            break
+        else:
+            print('Ingrese una opcion valida.')
+
+def val_nombres(msg1, lista): #añadele lo de que si se repite el nombre
+    while True:
+        string = input(msg1)
+        if string.replace(" ", "").replace('&', '').isalpha():
+            string = string.title()
+            return string
+            break
+        else:
+            print('Ingrese una opcion valida')
