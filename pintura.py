@@ -10,10 +10,10 @@ class Pintura:
 
   def mostrar_pintura(self):
     if self.eliminado == False:
-      print('''\nCota:{self.cota}
-      \nNombre de la pintura: {self.nombre}
-      \nPrecio: {self.precio}
-      \nStatus: {self.status}}''')
+      print("Cota de la obra :{} ".format(self.cota))
+      print("Nombre de la obra:{} ".format(self.nombre))
+      print("Precio de la obra :{} ".format(self.precio))
+      print("Status de la obra:{} ".format(self.status))
     else:
       print('\nLa pinrtura {self.nombre} ha sido eliminada.')
 
