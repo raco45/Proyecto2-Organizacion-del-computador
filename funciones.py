@@ -86,14 +86,14 @@ def validar_nombre(lista):
 def pedir_precio():
     while True:
         try:
-            num = input("Introduzca el precio de la obra: ")
-            if num.replace(" ", "").isnumeric() and 1<=float(num):
-                num = float(num)
+            num = float(input("Introduzca el precio de la obra: "))
+            if 1<=num:
+                num = num
                 return num
             else:
                 print('Ingrese una opcion valida.')
         except:
-            print("Se ha identificado un error")
+            print("Se ha identificado un error, ingrese un numero valido")
             continue
 
 
@@ -122,6 +122,15 @@ def set_status(pintura):
             print("Se ha identificado un error")
             continue
 
+def val_menu(msg1, n):
+    while True:
+        num = input(msg1)
+        if num.replace(" ", "").isnumeric() and 1<=int(num)<n:
+            num = int(num)
+            return num
+            
+        else:
+            print('Ingrese una opcion valida.')
 
 def insertar_pintura(lista, cotas_ordenada, nombre_ordenado):
     while True:
@@ -171,12 +180,15 @@ def busqueda_cota(lista_ordenada, lista_pinturas):
         pos=busqueda.busqueda_binaria_cota(lista_ordenada,cota)
         if(pos==None):
             print("No se ha encontrado ninguna pintura con esa cota")
+            return None
         elif(pos!=None):
             if(lista_pinturas[pos].eliminado==True):
                 print("La pintura que estas buscando ha sido eliminada")
+                return None
             else:
                 print("Se ha encontrado la siguiente pintura")
                 lista_pinturas[pos].mostrar_pintura()
+                return lista_pinturas[pos]
     except:
         print("Se ha detectado un error ")
 
@@ -188,15 +200,53 @@ def busqueda_nombre(lista_ordenada, lista_pinturas):
         pos=busqueda.busqueda_binaria_nombre(lista_ordenada,nombre)
         if(pos==None):
             print("No se ha encontrado ninguna pintura con ese nombre")
+            return None
         elif(pos!=None):
             if(lista_pinturas[pos].eliminado==True):
                 print("La pintura que estas buscando ha sido eliminada")
+                return None
             else:
                 print("Se ha encontrado la siguiente pintura")
                 lista_pinturas[pos].mostrar_pintura()
+                return lista_pinturas[pos]
     except:
         print("Se ha detectado un error ")
         
 
+
+def cambio_estado(n, lista_pinturas, lista_cotas, lista_nombres):
+    if(n==1):
+        pintu=busqueda_cota(lista_cotas, lista_pinturas)
+        if(pintu!= None):
+            set_status(pintu)
+    elif(n==2):
+        pintu=busqueda_nombre(lista_nombres, lista_pinturas)
+        if(pintu!= None):
+            set_status(pintu)  
+    pintu.mostrar_pintura()
+
+def eliminacion_logica(n, lista_pinturas, lista_cotas, lista_nombres):
+    if(n==1):
+        pintu=busqueda_cota(lista_cotas, lista_pinturas)
+        if(pintu!= None):
+            pintu.eliminado=True
+            print("La pintura ha sido eliminada ")
+    elif(n==2):
+        pintu=busqueda_nombre(lista_nombres, lista_pinturas)
+        if(pintu!= None):
+            pintu.eliminado=True  
+            print("La pintura ha sido eliminada ") 
+
+def compactador(lista_pinturas, lista_cota, lista_nombre):
+    lista_cota.clear()
+    lista_nombre.clear()
+    for x in lista_pinturas:
+        if (x.eliminado==True):
+            lista_pinturas.remove(x)
+        else: 
+            objeto_cota= indexes.Cota_Indexada(x.cota,lista_pinturas.index(x))
+            objeto_nombre= indexes.Nombre_index(x.nombre,lista_pinturas.index(x))
+            lista_cota.append(objeto_cota)
+            lista_nombre.append(objeto_nombre)
 
 

@@ -1,5 +1,6 @@
 import funciones
 import indexes
+import busqueda
 
 texto="""  _______   __                                                    __        __                                                         
 |       \ |  \                                                  |  \      |  \                                                        
@@ -37,35 +38,120 @@ texto="""  _______   __                                                    __   
                                                     |  \__| $$                                                                        
                                                      \$$    $$                                                                        
                                                       \$$$$$$          """
-                                                
+print(texto)                                         
+lista = []
+lista_cotas=[]
+lista_nombres=[]
+def main():
+        print('''\nBienvenid@ al Louvre (Hola Andres)\n''')
+        while True:
+                menu = funciones.val_menu('''\nIndique que quiere realizar a continuacion:
+                \n1. Insertar pintura dentro de la base de datos.
+                \n2. Consultar base de datos.
+                \n3. Editar status de una pintura.
+                \n4. Eliminar una pintura.
+                \n5. Compactador.
+                \n6. Exit
+                \n ==>  ''', 7)
+                if menu == 1:
+                        funciones.insertar_pintura(lista,lista_cotas,lista_nombres)
+                        print("Una nueva pintura ha sido agregada a la base de datos ")
+                        continue
+                if menu == 2:
+                        while True:
+                                tipo = funciones.val_menu('''\nQue tipo de consulta desea realizar:
+                                \n1. Por cota.
+                                \n2. Por nombre.
+                                \n ==> ''', 3)
+                                if tipo == 1:
+                                        
+                                        funciones.busqueda_cota(lista_cotas, lista)
+                                        otra = funciones.val_menu('''\nDesea realizar otra busqueda:
+                                        \n1. Si
+                                        \n2. No.
+                                        \n ==>  ''', 3)
+                                        if otra == 1:
+                                                continue
+                                        else:
+                                                break
+                                      
+                                if tipo == 2:
+                                        funciones.busqueda_nombre(lista_nombres, lista)
+                                        otra = funciones.val_menu('''\nDesea realizar otra busqueda:
+                                        \n1. Si
+                                        \n2. No.
+                                        \n ==>  ''', 3)
+                                        if otra == 1:
+                                                continue
+                                        else:
+                                                break
+                        continue
+                if menu == 3:
+                        while True:
+                                tipo = funciones.val_menu('''\nQue tipo de consulta desea realizar:
+                                \n1. Por cota.
+                                \n2. Por nombre.
+                                \n ==> ''', 3)
+                                if tipo == 1:
+                                        funciones.cambio_estado(tipo,lista,lista_cotas,lista_nombres)
+                                        otra = funciones.val_menu('''\nDesea realizar otra busqueda:
+                                        \n1. Si
+                                        \n2. No.
+                                        \n ==>  ''', 3)
+                                        if otra == 1:
+                                                continue
+                                        else:
+                                                break
+                                if tipo == 2:
+                                        funciones.cambio_estado(tipo,lista,lista_cotas,lista_nombres)
+                                        otra = funciones.val_menu('''\nDesea realizar otra busqueda:
+                                        \n1. Si
+                                        \n2. No.
+                                        \n ==>  ''', 3)
+                                        if otra == 1:
+                                                continue
+                                        else:
+                                                break
+                        continue  
+                if menu == 4:
+                        while True:
+                                tipo = funciones.val_menu('''\nQue tipo de consulta desea realizar:
+                                \n1. Por cota.
+                                \n2. Por nombre.
+                                \n ==> ''', 3)
+                                if tipo == 1:
+                                        funciones.eliminacion_logica(tipo,lista, lista_cotas, lista_nombres)
+                                        otra = funciones.val_menu('''\nDesea realizar otra busqueda:
+                                        \n1. Si
+                                        \n2. No.
+                                        \n ==>  ''', 3)
+                                        if otra == 1:
+                                                continue
+                                        else:
+                                                break
+                                if tipo == 2:
+                                        funciones.eliminacion_logica(tipo,lista, lista_cotas, lista_nombres)
+                                        otra = funciones.val_menu('''\nDesea realizar otra busqueda:
+                                        \n1. Si
+                                        \n2. No.
+                                        \n ==>  ''', 3)
+                                        if otra == 1:
+                                                continue
+                                        else:
+                                                break
+                        continue 
+                if menu == 5:
+                        for x in lista:
+                                print(x.cota)
+                        funciones.compactador(lista,lista_cotas,lista_nombres)
+                        print("Las pinturas eliminadas han sido removidas de la lista")
+                        for x in lista:
+                                print(x.cota)
+                        continue
 
-"""pintura_cota1= indexes.Cota_Indexada("ABCD1234",1)
-pintura_cota2= indexes.Cota_Indexada("DCBA1234",1)
-pintura_cota3= indexes.Cota_Indexada("FGAE1234",1)
-pintura_cota4= indexes.Cota_Indexada("GHAS1234",1)
-pintura_cota5= indexes.Cota_Indexada("ADDF1234",1)
-pintura_cota6= indexes.Cota_Indexada("ADFF1234",1)
-pintura_cota7= indexes.Cota_Indexada("GADE1234",1)
-pintura_cota8= indexes.Cota_Indexada("GHSQ1234",1)
-pintura_cota9= indexes.Cota_Indexada("RTFW1234",1)
-lista=[]
-lista.append(pintura_cota1)
-lista.append(pintura_cota2)
-lista.append(pintura_cota3)
-lista.append(pintura_cota4)
-lista.append(pintura_cota5)
-lista.append(pintura_cota6)
-lista.append(pintura_cota7)
-lista.append(pintura_cota8)
-lista.append(pintura_cota9)
-funciones.ordenar_lista_cota(lista)
-for x in lista:
-        print(x.cota)"""
+                if menu == 6:
+                        print('\nBye bye <3\n')
+                        break   
 
-lista=[]
-cotas=[]
-nombres=[]
 
-funciones.insertar_pintura(lista,cotas,nombres)
-
-print(lista[0].cota)
+main()
