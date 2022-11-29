@@ -37,8 +37,7 @@ def val_str(msg1):
         string = input(msg1)
         if string.replace(" ", "").isalpha():
             string = string.capitalize()
-            return string
-            break
+            return string 
         else:
             print('Ingrese una opcion valida')
                    
@@ -48,7 +47,6 @@ def val_int(msg1):
         if num.replace(" ", "").isnumeric() and 1<=int(num):
             num = int(num)
             return num
-            break
         else:
             print('Ingrese una opcion valida.')
 
@@ -58,7 +56,6 @@ def val_menu(msg1, n):
         if num.replace(" ", "").isnumeric() and 1<=int(num)<n:
             num = int(num)
             return num
-            break
         else:
             print('Ingrese una opcion valida.')
 
