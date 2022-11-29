@@ -1,8 +1,10 @@
+import busqueda
+import pintura 
 #validaciones 
 
 #pedir cota
 
-def pedir_cota():
+def pedir_cota(lista):
     while(True):
         try:
             cota= input("Ingresa una cota -->  ").strip()
@@ -27,35 +29,63 @@ def pedir_cota():
                         print("Por favor ingresar 4 numeros al final")
                         continue
                     else:
-                        return cota.upper() 
+                        auxi=busqueda.busqueda_binaria_cota(lista,cota.upper())
+                        if(auxi== None):
+                            return cota.upper() 
+                        elif(auxi!=None):
+                            print("Esa cota ya existe")
+                            continue
         except :
             print("Se ha identificado un error")
             continue 
 
-def val_str(msg1):
+def pedir_nombre(lista):
     while True:
-        string = input(msg1)
-        if string.replace(" ", "").isalpha():
-            string = string.capitalize()
-            return string 
-        else:
-            print('Ingrese una opcion valida')
+        try:
+            string = input("Ingrese el nombre de la pintura: ")
+            if (string.replace(" ", "").isalpha() and len(string.replace(" ",""))<=30 and len(string.replace(" ",""))>0):
+                string = string.capitalize()
+                auxi=busqueda.busqueda_binaria_nombre(lista,string)
+                if(auxi== None):
+                    return string 
+                elif(auxi!=None):
+                    print("Ya existe una pintura con ese nombre ")
+                    continue
+                     
+            else:
+                print('Ingrese una opcion valida')
+        except:
+            print("Se ha identificado un error")
+            continue
                    
-def val_int(msg1):
+def pedir_precio():
     while True:
-        num = input(msg1)
-        if num.replace(" ", "").isnumeric() and 1<=int(num):
-            num = int(num)
-            return num
-        else:
-            print('Ingrese una opcion valida.')
+        try:
+            num = input("Introduzca el precio de la obra: ")
+            if num.replace(" ", "").isnumeric() and 1<=float(num):
+                num = float(num)
+                return num
+            else:
+                print('Ingrese una opcion valida.')
+        except:
+            print("Se ha identificado un error")
+            continue
 
-def val_menu(msg1, n):
+
+
+
+def set_status(pintura):
     while True:
-        num = input(msg1)
-        if num.replace(" ", "").isnumeric() and 1<=int(num)<n:
+        num = input('''\nIngrese el estatus de la pintura:
+    \n1. En exhibicion.
+    \n2. En mantenimiento.
+    \n---->   ''')
+        if num.replace(" ", "").isnumeric() and 1<=int(num)<3:
             num = int(num)
-            return num
+            if(num==1):
+                pintura.en_exhibicon()
+            else:
+                pintura.en_mantenimiento()
         else:
             print('Ingrese una opcion valida.')
 

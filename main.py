@@ -1,5 +1,5 @@
 import funciones
-
+import indexes
 
 texto="""  _______   __                                                    __        __                                                         
 |       \ |  \                                                  |  \      |  \                                                        
@@ -37,7 +37,11 @@ texto="""  _______   __                                                    __   
                                                     |  \__| $$                                                                        
                                                      \$$    $$                                                                        
                                                       \$$$$$$          """
+                                                
 
+pintura_cota= indexes.Nombre_index("Julio",1)
+lista=[]
+lista.append(pintura_cota)
 print(texto)
-variable=funciones.pedir_cota()
+variable=funciones.pedir_nombre(lista)
 print(variable)
