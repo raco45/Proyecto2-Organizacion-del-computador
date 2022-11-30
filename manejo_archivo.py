@@ -1,17 +1,25 @@
-#se imprimen los datos del la lista en un archivo de texto
+import pintura
+
 def imprimir_datos(lista):
     archivo = open("datos.txt", "w")
     for i in range(len(lista)):
-        archivo.write(str(lista[i]) + " ")
+        archivo.write("{},{},{},{},{}\n".format(lista[i].cota,lista[i].nombre,lista[i].precio,lista[i].status,lista[i].eliminado ))
     archivo.close()
 
-# Path: manejo_archivo.py
-#se lee el archivo de texto y se almacenan los datos en una lista
+
 def leer_datos():
     archivo = open("datos.txt", "r")
     lista = []
     for linea in archivo:
-        lista.append(linea)
+        x=linea.split(",")
+        aux= pintura.Pintura(x[0],x[1],x[2])
+        aux.status=x[3]
+        if(x[4].replace(" ","")=="False"):
+            aux.eliminado=False
+        elif(x[4].replace(" ","")=="True"):
+            aux.eliminado=True
+            
+        lista.append(aux)
     archivo.close()
     return lista
 

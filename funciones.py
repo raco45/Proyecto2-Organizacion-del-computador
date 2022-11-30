@@ -151,31 +151,11 @@ def insertar_pintura(lista, cotas_ordenada, nombre_ordenado):
             continue
 
 
-def ordenar_lista_nombre(lista):
-    for step in range(1, len(lista)):
-        key = lista[step].nombre
-        j = step - 1
-        
-        while j >= 0 and key < lista[j].nombre:
-            lista[j + 1].nombre = lista[j].nombre
-            j = j - 1
-              
-        lista[j + 1].nombre = key
-        
-def ordenar_lista_cota(lista):
-    for step in range(1, len(lista)):
-        key = lista[step].cota
-        j = step - 1
-        
-        while j >= 0 and key < lista[j].cota:
-            lista[j + 1].cota = lista[j].cota
-            j = j - 1
-               
-        lista[j + 1].cota = key
+
         
 def busqueda_cota(lista_ordenada, lista_pinturas):
     try:
-        ordenar_lista_cota(lista_ordenada)
+        lista_ordenada=sorted(lista_ordenada, key=lambda x: x.cota)
         cota=pedir_cota()
         pos=busqueda.busqueda_binaria_cota(lista_ordenada,cota)
         if(pos==None):
@@ -195,7 +175,7 @@ def busqueda_cota(lista_ordenada, lista_pinturas):
         
 def busqueda_nombre(lista_ordenada, lista_pinturas):
     try:
-        ordenar_lista_cota(lista_ordenada)
+        lista_ordenada=sorted(lista_ordenada, key=lambda x: x.nombre)
         nombre=pedir_nombre()
         pos=busqueda.busqueda_binaria_nombre(lista_ordenada,nombre)
         if(pos==None):
@@ -249,4 +229,25 @@ def compactador(lista_pinturas, lista_cota, lista_nombre):
             lista_cota.append(objeto_cota)
             lista_nombre.append(objeto_nombre)
 
+def llena_listas(lista_pinturas, lista_cota, lista_nombre):
+    for x in lista_pinturas:
+        objeto_cota= indexes.Cota_Indexada(x.cota,lista_pinturas.index(x))
+        objeto_nombre= indexes.Nombre_index(x.nombre,lista_pinturas.index(x))
+        lista_cota.append(objeto_cota)
+        lista_nombre.append(objeto_nombre)
+        
 
+def mostrar_todas_pinturas(lista):
+  for i in lista:
+    
+    print(f'''\nCota:{i.cota}
+\nNombre de la pintura: {i.nombre}
+\nPrecio: {i.precio}
+\nStatus: {i.status}
+\nEliminado:{i.eliminado} ''')
+
+def mostrar_orden(lista):
+    lista=sorted(lista, key=lambda x: x.nombre)
+    #ordenar_lista_nombre(lista)
+    for x in lista:
+        print(x.nombre, x.posicion)

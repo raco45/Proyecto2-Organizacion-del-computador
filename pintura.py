@@ -15,17 +15,9 @@ class Pintura:
       print("Precio de la obra :{} ".format(self.precio))
       print("Status de la obra:{} ".format(self.status))
     else:
-      print('\nLa pinrtura {self.nombre} ha sido eliminada.')
+      print(f'\nLa pinrtura {self.nombre} ha sido eliminada.')
 
-def mostrar_todas_pinturas(lista):
-  for i in lista:
-        if lista[i].eliminado == False:
-             print('''\nCota:{lista[i].cota}
-            \nNombre de la pintura: {lista[i].nombre}
-            \nPrecio: {lista[i].precio}
-            \nStatus: {lista[i].status}}''')
-        else:
-            print('\nLa pinrtura {lista[i].nombre} ha sido eliminada.')
+
 
 #Elimina logicamente la pintura
 def eliminar(self):

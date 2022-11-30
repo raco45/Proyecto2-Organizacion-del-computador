@@ -1,7 +1,7 @@
 import funciones
 import indexes
 import busqueda
-
+import manejo_archivo
 texto="""  _______   __                                                    __        __                                                         
 |       \ |  \                                                  |  \      |  \                                                        
 | $$$$$$$\ \$$  ______   _______  __     __   ______   _______   \$$  ____| $$  ______    _______                                     
@@ -39,9 +39,10 @@ texto="""  _______   __                                                    __   
                                                      \$$    $$                                                                        
                                                       \$$$$$$          """
 print(texto)                                         
-lista = []
+lista = manejo_archivo.leer_datos()
 lista_cotas=[]
 lista_nombres=[]
+funciones.llena_listas(lista,lista_cotas,lista_nombres)
 def main():
         print('''\nBienvenid@ al Louvre (Hola Andres)\n''')
         while True:
@@ -141,15 +142,14 @@ def main():
                                                 break
                         continue 
                 if menu == 5:
-                        for x in lista:
-                                print(x.cota)
+                        
                         funciones.compactador(lista,lista_cotas,lista_nombres)
                         print("Las pinturas eliminadas han sido removidas de la lista")
-                        for x in lista:
-                                print(x.cota)
+                        
                         continue
 
                 if menu == 6:
+                        manejo_archivo.imprimir_datos(lista)
                         print('\nBye bye <3\n')
                         break   
 
